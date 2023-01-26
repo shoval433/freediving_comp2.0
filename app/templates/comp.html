@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Freediving Competition Results</title>
+    <style>
+        h1 {
+            font-size: 50px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="competitionName"></h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Meter</th>
+            <th>Discipline</th>
+            <th>Time</th>
+            <th>Country</th>
+            <th>NR</th>
+            <th>Gender</th>
+        </tr>
+        <tbody id="results"></tbody>
+    </table>
+    <br>
+    <h3>Add a new entry:</h3>
+    <form>
+        <label for="_id">diver_id:</label>
+        <input type="text" id="_id" name="_id"><br>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br>
+        <label for="meter">Meter:</label>
+        <input type="text" id="meter" name="meter"><br>
+        <label for="discipline">Discipline:</label>
+        <input type="text" id="discipline" name="discipline"><br>
+        <label for="time">Time:</label>
+        <input type="text" id="time" name="time"><br>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country"><br>
+        <label for="nr">NR:</label>
+        <input type="text" id="nr" name="nr"><br>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender"><br>
+        <input type="button" value="Submit" onclick="submitForm()">
+    </form>
+    <script>
+        var competitionName = location.search.split("=")[1];
+        document.getElementById("competitionName").innerHTML = "Competition: " + competitionName;
+
+        // Replace this with the actual list of dictionaries
+        var results = [{"_id": "31","firstName": "shoval","lastName": "astamker","meter": "60","discipline": " CNF","time": "02:00","country": "Israel","NR": "yes","gender": "M"}]
+
+        var resultsTable = document.getElementById("results");
+        for (var i = 0; i < results.length; i++) {
+            var row = resultsTable.insertRow();
+            var idCell = row.insertCell(0);
+            var firstNameCell = row.insertCell(1);
+            var lastNameCell = row.insertCell(2);
+            var meterCell = row.insertCell(3);
+            var disciplineCell = row.insertCell(4);
+            var timeCell = row.insertCell(5);
+            var countryCell = row.insertCell(6);
+            var nrCell = row.insertCell(7);
+            var genderCell = row.insertCell(8);
+
+            idCell.innerHTML = results[i]._id;
+            firstNameCell.innerHTML = results[i].firstName;
+            lastNameCell.innerHTML = results[i].lastName;
+            meterCell.innerHTML = results[i].meter;
+            disciplineCell.innerHTML = results[i].discipline;
+            timeCell.innerHTML = results[i].time;
+            countryCell.innerHTML = results[i].country;
+            nrCell.innerHTML = results[i].NR;
+            genderCell.innerHTML = results[i].gender;
+        }
+        function submitForm() {
+            var _id = document.getElementById("_id").value;
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var meter = document.getElementById("meter").value;
+            var discipline = document.getElementById("discipline").value;
+            var time = document.getElementById("time").value;
+            var country = document.getElementById("country").value;
+            var nr = document.getElementById("nr").value;
+            var gender = document.getElementById("gender").value;
+
+            var newData = {
+                "_id":_id,
+                "firstName": firstName,
+                "lastName": lastName,
+                "meter": meter,
+                "discipline": discipline,
+                "time": time,
+                "country": country,
+                "NR": nr,
+                "gender": gender
+            };
+            // send the data to the server in a POST request
+            fetch(location.href, {
+                method: 'POST',
+                body: JSON.stringify(newData),
+                headers:{
+                  'Content-Type': 'application/json'
+                }
+              }).then(res => res.json())
+              .then(response => console.log('Success:', JSON.stringify(response)))
+              .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

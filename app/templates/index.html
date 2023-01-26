@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to the declaration center of the freediving competitions</title>
+    <style>
+        h1 {
+            font-size: 50px;
+        }
+        h3 {
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function submitForm() {
+            var competition = document.getElementById("competition").value;
+            var url = "/" + competition + "/";
+            location.href = url;
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to the declaration center of the freediving competitions</h1>
+    <h3>Register under which competition you would like to register for</h3>
+    <form>
+        <input type="text" id="competition" name="competition" placeholder="Enter competition name">
+        <input type="button" value="Submit" onclick="submitForm()">
+    </form>
+</body>
+</html>

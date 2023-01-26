@@ -1,0 +1,23 @@
+version: '3'
+services:
+	my_db:
+		  image: mongo:4.2
+		  restart: always
+		  environment:
+		    MONGO_INITDB_ROOT_USERNAME: root
+		    MONGO_INITDB_ROOT_PASSWORD: password
+		    MONGODB_DATABASE: global
+		  ports:
+		    - "27017:27017" 
+		  volumes:
+		    - data:/data/db
+		  healthcheck:
+		    test: ["CMD", "mongo", "--eval","db.runCommand({ping:1}).ok"]
+		    interval: 10s
+		    timeout: 5s
+		    retries: 5
+
+
+volumes:
+  data:
+    driver: local

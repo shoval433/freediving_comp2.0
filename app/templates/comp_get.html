@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <title>Results</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        border: 1px solid #DDDDDD;
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #DDDDDD;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>competition:{{ NAME }}</h1>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Meter</th>
+        <th>Discipline</th>
+        <th>Time</th>
+        <th>Country</th>
+        <th>NR</th>
+        <th>Gender</th>
+      </tr>
+      {% for result in result %}
+        <tr>
+          <td>{{ result._id }}</td>
+          <td>{{ result.firstName }}</td>
+          <td>{{ result.lastName }}</td>
+          <td>{{ result.meter }}</td>
+          <td>{{ result.discipline }}</td>
+          <td>{{ result.time }}</td>
+          <td>{{ result.country }}</td>
+          <td>{{ result.NR }}</td>
+          <td>{{ result.gender }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <h2>Add a new diver:</h2>
+    <form method="post">
+        <!-- <label for="Comp">Competition:</label>
+        <input type="text" id="Comp" name="Comp"><br> -->
+        <label for="_id">Diver ID:</label>
+        <input type="text" id="_id" name="_id"><br>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName"><br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName"><br>
+        <label for="meter">Meter:</label>
+        <input type="text" id="meter" name="meter"><br>
+        <label for="discipline">Discipline:</label>
+        <input type="text" id="discipline" name="discipline"><br>
+        <label for="time">Time:</label>
+        <input type="text" id="time" name="time"><br>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country"><br>
+        <label for="NR">NR:</label>
+        <input type="text" id="NR" name="NR"><br>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" name="gender"><br>
+        <input type="submit" value="Send">
+      </form>
+  </body>
+</html>

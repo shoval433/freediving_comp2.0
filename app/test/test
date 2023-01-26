@@ -1,0 +1,22 @@
+curl -X POST "${APP_IP}:${APP_PORT}/dahab" \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'diver_id=31' \
+--data-urlencode 'firstName=shoval' \
+--data-urlencode 'lastName=astamker' \
+--data-urlencode 'meter=60' \
+--data-urlencode 'discipline=CNF' \
+--data-urlencode 'time=02:00' \
+--data-urlencode 'country=Israel' \
+--data-urlencode 'NR=yes' \
+--data-urlencode 'gender=M'->'[{"_id": "31","firstName": "shoval","lastName": "astamker","meter": "60","discipline" : "CNF","time": "02:00","country": "Israel","NR": "yes","gender": "M"}]'
+curl -X POST "${APP_IP}:${APP_PORT}/dahab" \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'diver_id=32' \
+--data-urlencode 'firstName=shoval1' \
+--data-urlencode 'lastName=astamker' \
+--data-urlencode 'meter=60' \
+--data-urlencode 'discipline=CNF' \
+--data-urlencode 'time=02:00' \
+--data-urlencode 'country=Israel' \
+--data-urlencode 'NR=yes' \
+--data-urlencode 'gender=M'->'[{"_id": "32","firstName": "shoval1","lastName": "astamker","meter": "60","discipline" : "CNF","time": "02:00","country": "Israel","NR": "yes","gender": "M"}]'
