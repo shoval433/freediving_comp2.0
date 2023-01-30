@@ -137,7 +137,7 @@ resource "aws_iam_role_policy" "ecr_ec2" {
   name = "ecr_ec2"
   role = "${aws_iam_role.iam_role_to_ec2.id}"
   policy = <<-EOF
-    {
+  {
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -163,7 +163,7 @@ resource "aws_iam_role_policy" "ecr_ec2" {
             }
         }
     ]
-}
+  }
 EOF
 }
 resource "aws_instance" "prod_shoval_iac" {
