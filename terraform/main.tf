@@ -34,10 +34,10 @@ resource "null_resource" "name" {
     ]
   }
   # # script
-  provisioner "file" {
-    source      = "deployment.sh"
-    destination = "/tmp/script.sh"
-  }
+  # provisioner "file" {
+  #   source      = "deployment.sh"
+  #   destination = "/tmp/script.sh"
+  # }
   # # deployment folder
   # provisioner "file" {
   #   source      = "./production"
