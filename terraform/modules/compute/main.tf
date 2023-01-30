@@ -173,6 +173,10 @@ resource "aws_instance" "prod_shoval_iac" {
   subnet_id = var.subnets-id[count.index]
   vpc_security_group_ids = [aws_security_group.prodSG_iac_shoval.id]
   associate_public_ip_address = true
+
+   key_name                    = local_file.ssh-key-pair.filename
+
+
   user_data = <<-EOF
     #!/bin/bash
     # Install docker
@@ -210,6 +214,10 @@ public_key = tls_private_key.rsa.public_key_openssh
 resource "tls_private_key" "rsa" {
 algorithm = "RSA"
 rsa_bits  = 4096
+}
+resource "aws_key_pair" "aws_key_pair" {
+  key_name   = "terraform-key-elior-tf"
+  public_key = tls_private_key.rsa-key.public_key_openssh
 }
 
 resource "local_file" "ssh-key" {

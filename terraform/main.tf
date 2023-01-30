@@ -27,7 +27,7 @@ resource "null_resource" "name" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo 'hello from the other side'",
+      "docker run -d --name hostname -p 80:3000 adongy/hostname-docker",
     ]
   }
   # # script
