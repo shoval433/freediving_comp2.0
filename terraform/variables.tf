@@ -25,3 +25,6 @@ variable "AZs" {
 # variable "ec2_id" {
 #   type = list(any)
 # }
+variable "VAR" {
+  
+}

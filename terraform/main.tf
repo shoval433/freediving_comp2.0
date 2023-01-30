@@ -25,12 +25,12 @@ resource "null_resource" "name" {
     private_key = module.compute.key
   }
   provisioner "file" {
-    source      = "init.sh"
+    source      = "../init"
     destination = "/home/ubuntu"
   }
   provisioner "remote-exec" {
     inline = [
-      "cd to-send && bash init.sh",
+      "cd init && bash init.sh ${var.VAR}",
     ]
   }
   # # script
