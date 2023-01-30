@@ -125,6 +125,9 @@ resource "aws_iam_role" "iam_role_to_ec2" {
       },
     ]
   })
+   lifecycle {
+    create_before_destroy = true
+  }
   tags = {
     tag-key = "iam_role_to_ec2"
   }
@@ -214,6 +217,9 @@ rsa_bits  = 4096
 resource "aws_key_pair" "aws_key_pair" {
   key_name   = "terraform-key-shoval-tf"
   public_key = tls_private_key.rsa.public_key_openssh
+   lifecycle {
+    create_before_destroy = true
+  }
 }
 
 # resource "local_file" "ssh-key" {
