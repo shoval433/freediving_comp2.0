@@ -1,6 +1,6 @@
 resource "null_resource" "example" {
   triggers = {
-    instance_id = module.compute.prod_shoval_iac[*].id
+    instance_id = aws_instance.prod_shoval_iac[*].id
   }
   
   provisioner "remote-exec" {
