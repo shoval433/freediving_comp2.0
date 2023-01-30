@@ -174,7 +174,7 @@ resource "aws_instance" "prod_shoval_iac" {
   vpc_security_group_ids = [aws_security_group.prodSG_iac_shoval.id]
   associate_public_ip_address = true
 
-   key_name                    = local_file.ssh-key-pair.content
+   key_name                    = aws_key_pair.aws_key_pair.key_name
 
 
   user_data = <<-EOF
@@ -206,21 +206,17 @@ resource "aws_instance" "prod_shoval_iac" {
       "Name" =format("%s-%s",var.ec2_name[count.index],"${terraform.workspace}")
     })
 }
-resource "aws_key_pair" "tf-key-pair" {
-key_name = "tf-key-pair"
-public_key = tls_private_key.rsa.public_key_openssh
-}
 
 resource "tls_private_key" "rsa" {
 algorithm = "RSA"
 rsa_bits  = 4096
 }
 resource "aws_key_pair" "aws_key_pair" {
-  key_name   = "terraform-key-elior-tf"
+  key_name   = "terraform-key-shoval-tf"
   public_key = tls_private_key.rsa.public_key_openssh
 }
 
-resource "local_file" "ssh-key" {
-content  = tls_private_key.rsa.private_key_pem
-filename = "ssh-key-pair"
-}
+# resource "local_file" "ssh-key" {
+# content  = tls_private_key.rsa.private_key_pem
+# filename = "ssh-key-pair"
+# }
