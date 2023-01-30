@@ -121,7 +121,7 @@ pipeline{
                     sh "tar -czvf start_to_ec2.tar.gz docker-compose-prod.yaml ./nginx2 "
                     sh "cd app && tar -czvf templates.tar.gz ./templates"
                     sh "cd app && mv templates.tar.gz ../init"
-                    sh "mv start_to_ec2.tar.gz /init"
+                    sh "mv start_to_ec2.tar.gz init/"
                     dir("terraform"){
                         sh "terraform init"
                         sh "terraform workspace new prod || terraform workspace select prod"
