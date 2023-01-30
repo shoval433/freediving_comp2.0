@@ -5,6 +5,7 @@ module "network" {
 }
 
 module "compute" {
+  AZ           = var.AZs
   source = "./modules/compute"
   ec2-count  = var.number
   vpc-id     = module.network.vpc_id
