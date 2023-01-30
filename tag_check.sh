@@ -2,7 +2,7 @@
 last_tag=$1
 
 all_tag=$(git tag)
-
+test_one=`git tag | wc -l`
 tag_befor=`echo $all_tag |rev| cut -d " " -f2 | rev`
 
 test_last=`echo $last_tag | cut -d '.' -f1`
@@ -16,6 +16,9 @@ if [ "$test_last" -eq "$test_befor" ];then
     test_befor=`echo $tag_befor | cut -d '.' -f3`
         if [ "$test_last" -gt "$test_befor" ];then
         echo "$last_tag is good" 
+        ####
+        elif [ "$test_one" -eq "1" ];then
+        echo "$last_tag is good" 
         else
         echo "tag not good"
         exit 1
@@ -27,8 +30,6 @@ if [ "$test_last" -eq "$test_befor" ];then
     exit 1 
     fi
 elif [ "$test_last" -gt "$test_befor" ];then
-echo "$last_tag is good" 
-elif [ "$tag_befor" -eq "$last_tag" ]
 echo "$last_tag is good" 
 else
 echo "tag not good"
