@@ -3,9 +3,9 @@ output "key" {
 }
 
 output "ec2_public_ip" {
-  count=var.ec2-count
   value = aws_instance.prod_shoval_iac[count.index].public_ip
 }
+
 output "ec2_id" {
   value = aws_instance.prod_shoval_iac[count.index].id
 }
