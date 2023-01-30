@@ -136,8 +136,35 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 resource "aws_iam_role_policy" "ecr_ec2" {
   name = "ecr_ec2"
   role = "${aws_iam_role.iam_role_to_ec2.id}"
-  policy = data.local_file.ami_role.content
-
+  policy = <<-EOF
+    {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:*",
+                "cloudtrail:LookupEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:AWSServiceName": [
+                        "replication.ecr.amazonaws.com"
+                    ]
+                }
+            }
+        }
+    ]
+}
+EOF
 }
 resource "aws_instance" "prod_shoval_iac" {
   count = var.ec2-count
@@ -146,7 +173,27 @@ resource "aws_instance" "prod_shoval_iac" {
   subnet_id = var.subnets-id[count.index]
   vpc_security_group_ids = [aws_security_group.prodSG_iac_shoval.id]
   associate_public_ip_address = true
-  user_data = data.local_file.user_data.content
+  user_data = <<-EOF
+    #!/bin/bash
+    # Install docker
+    apt-get update
+    apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    add-apt-repository \
+      "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) \
+      stable"
+    apt-get update
+    apt-get install -y docker-ce
+    usermod -aG docker ubuntu
+
+    # Install docker-compose
+    curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+    sudo apt-get install docker-compose-plugin
+    sudo apt install awscli
+    EOF
+
   //add the role
   iam_instance_profile = "${aws_iam_instance_profile.ec2_profile.name}"
 
