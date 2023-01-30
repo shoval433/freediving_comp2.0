@@ -22,6 +22,6 @@ variable "AZs" {
   description = "the AZ you want to use"
   default = ["eu-west-3a", "eu-west-3b"]
 }
-variable "ec2_id" {
-  type = list(any)
-}
+# variable "ec2_id" {
+#   type = list(any)
+# }
