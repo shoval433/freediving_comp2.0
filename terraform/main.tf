@@ -24,17 +24,20 @@ resource "null_resource" "name" {
     host        = module.compute.ec2_public_ip[count.index]
     private_key = module.compute.key
   }
-
+  provisioner "file" {
+    source      = "init.sh"
+    destination = "/home/ubuntu"
+  }
   provisioner "remote-exec" {
     inline = [
-      "docker run -d --name hostname -p 80:3000 adongy/hostname-docker",
+      "cd to-send && bash init.sh",
     ]
   }
   # # script
-  # provisioner "file" {
-  #   source      = "deployment.sh"
-  #   destination = "/tmp/script.sh"
-  # }
+  provisioner "file" {
+    source      = "deployment.sh"
+    destination = "/tmp/script.sh"
+  }
   # # deployment folder
   # provisioner "file" {
   #   source      = "./production"
