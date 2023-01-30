@@ -117,18 +117,7 @@ pipeline{
                 echo "===============================================Executing Deploy==============================================="
                 //
                 script{
-                    sh "ssh ubuntu@43.0.20.24 'rm -f docker-compose-prod.yaml && rm -rd ./nginx2 ./templates'"
-                    sh "tar -czvf start_to_ec2.tar.gz docker-compose-prod.yaml ./nginx2 "
-                    sh "echo 'yes'|scp start_to_ec2.tar.gz ubuntu@43.0.20.24:/home/ubuntu/"
-
-                    sh "cd app && tar -czvf templates.tar.gz ./templates"
-                    sh "cd app && echo 'yes'|scp templates.tar.gz ubuntu@43.0.20.24:/home/ubuntu/"
-                    sh "ssh ubuntu@43.0.20.24 'aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 644435390668.dkr.ecr.eu-west-3.amazonaws.com'"
-                    sh""" 
-                    ssh ubuntu@43.0.20.24 'tar -xvzf start_to_ec2.tar.gz'
-                    ssh ubuntu@43.0.20.24 'tar -xvzf templates.tar.gz'
-                    ssh ubuntu@43.0.20.24 'docker compose -f docker-compose-prod.yaml down && export VERSION_COMP=${Ver_Calc} && docker compose -f docker-compose-prod.yaml up --build -d '
-                    """
+                   
                     
                 }
 
