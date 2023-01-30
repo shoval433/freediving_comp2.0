@@ -28,6 +28,8 @@ if [ "$test_last" -eq "$test_befor" ];then
     fi
 elif [ "$test_last" -gt "$test_befor" ];then
 echo "$last_tag is good" 
+elif [ "$tag_befor" -eq "$last_tag" ]
+echo "$last_tag is good" 
 else
 echo "tag not good"
 exit 1
