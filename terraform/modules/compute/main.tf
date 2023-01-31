@@ -129,7 +129,7 @@ resource "aws_iam_role" "iam_role_to_ec2" {
     create_before_destroy = true
   }
   tags = {
-    tag-key = "iam_role_to_ec2"
+    tag-key = "shoval_iam_role_to_ec2"
   }
 }
 resource "aws_iam_instance_profile" "ec2_profile" {
