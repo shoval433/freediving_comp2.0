@@ -99,6 +99,7 @@ pipeline{
                             docker.withRegistry("http://644435390668.dkr.ecr.eu-west-3.amazonaws.com/freedivingcompetitions", "ecr:eu-west-3:644435390668") {
                             docker.image("freedivingcompetitions:${Ver_Calc}").push()
                             }
+                            // freedive_comp20_main-app_comp-1
                 }
                 }
 
