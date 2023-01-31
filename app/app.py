@@ -105,7 +105,7 @@ def add_comp(comp):
     ,"gender":gender
     }
     
-    comp_db=db.get_database(comp)
+    comp_db=db.get_database(str(comp))
     
     for key, value in doc.items():
         if value is None or value == "":

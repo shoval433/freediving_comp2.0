@@ -79,6 +79,12 @@ resource "aws_lb" "alb_shoval_iac" {
     Owner =	var.Owner
     }
 }
+resource "aws_lb_cookie_stickiness_policy" "cookie_to_alb" {
+  name                     = "foo-policy"
+  load_balancer            = aws_lb.alb_shoval_iac.id
+  lb_port                  = 80
+  cookie_expiration_period = 600
+}
 
 ////////////////////ec2 
 resource "aws_security_group" "prodSG_iac_shoval" {
