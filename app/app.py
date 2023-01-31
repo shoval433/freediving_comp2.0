@@ -105,7 +105,7 @@ def add_comp(comp):
     ,"gender":gender
     }
     
-    comp_db=db.get_database(comp)
+    comp_db=db.get_database(str(comp))
 
     for key, value in doc.items():
         if value is None or value == "":
@@ -142,7 +142,7 @@ def get_NR(comp,NR):
     comp=str(comp).lower
     comp_db=db.get_database(comp)
     return json_util.dumps(list(comp_db.diver.find({"NR":NR})))
-    
+
 @app.get('/<comp>/country/<country>/')
 def get_country(comp,country):
     comp_db=db.get_database(comp)
