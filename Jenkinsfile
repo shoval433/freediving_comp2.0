@@ -160,6 +160,11 @@ pipeline{
         }
         failure{
             script{
+                 dir("terraform"){
+                        sh "terraform init"
+                        sh "terraform workspace select prod"
+                        sh "terraform destroy"
+                    }
                 emailext   recipientProviders: [culprits()],
                 subject: 'YOU ARE BETTER THEN THAT !!! ', body: 'Dear programmer, you have broken the code, you are asked to immediately sit on the chair and leave the coffee corner.',  
                 attachLog: true
