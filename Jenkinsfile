@@ -94,7 +94,7 @@ pipeline{
                                 accessKeyVaeiable: 'AWS_ACCESS_KET_ID',
                                 secretKeyVariable: 'AWS_SECRET_KEY_ID'
                                 ]]) {
-                                sh "cd app && docker build -t app ."
+                                sh "cd app && docker build -t app . --no-cache"
                                 sh "docker tag app freedivingcompetitions:${Ver_Calc}"
                             docker.withRegistry("http://644435390668.dkr.ecr.eu-west-3.amazonaws.com/freedivingcompetitions", "ecr:eu-west-3:644435390668") {
                             docker.image("freedivingcompetitions:${Ver_Calc}").push()
