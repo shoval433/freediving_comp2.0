@@ -104,7 +104,7 @@ def add_comp(comp):
     ,"NR":NR
     ,"gender":gender
     }
-    
+    #
     comp_db=db.get_database(str(comp))
     
     for key, value in doc.items():
