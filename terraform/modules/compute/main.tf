@@ -42,7 +42,7 @@ resource "aws_lb_target_group" "target-shoval-iac" {
     }
 }
 resource "aws_lb_listener" "http_forward" {
-  load_balancer_arn = aws_lb.alb_shoval_iac.arn
+  load_balancer_arn = aws_lb.tf-lb.arn
   protocol = "HTTP"
   port = "80"
   default_action {
@@ -65,8 +65,8 @@ resource "aws_lb_target_group_attachment" "add_proc1_iac" {
 # }
 
 
-resource "aws_lb" "alb_shoval_iac" {
-  name               = "alb1shoval${terraform.workspace}"
+resource "aws_lb" "tf-lb" {
+  name               = "tf-lb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb-shoval-sg-iac.id]
@@ -81,7 +81,7 @@ resource "aws_lb" "alb_shoval_iac" {
 }
 resource "aws_lb_cookie_stickiness_policy" "foo" {
   name                     = "foo-policy"
-  load_balancer            = aws_lb.alb_shoval_iac.id
+  load_balancer            = aws_lb.tf-lb.id
   lb_port                  = 80
   cookie_expiration_period = 600
 }
