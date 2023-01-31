@@ -66,7 +66,7 @@ resource "aws_lb_target_group_attachment" "add_proc1_iac" {
 
 
 resource "aws_lb" "alb_shoval_iac" {
-  name               = "alb1-shoval-iac-${terraform.workspace}"
+  name               = "alb1shoval${terraform.workspace}"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb-shoval-sg-iac.id]
