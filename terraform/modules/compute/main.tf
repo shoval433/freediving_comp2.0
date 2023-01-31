@@ -99,12 +99,12 @@ resource "aws_lb" "tf-lb" {
   }
 }
 
-resource "aws_lb_cookie_stickiness_policy" "bar" {
-  name                     = "bar-policy"
-  load_balancer            = aws_lb.tf-lb.id
-  lb_port                  = 80
-  cookie_expiration_period = 600
-}
+# resource "aws_lb_cookie_stickiness_policy" "bar" {
+#   name                     = "bar-policy"
+#   load_balancer            = aws_lb.tf-lb.id
+#   lb_port                  = 80
+#   cookie_expiration_period = 600
+# }
 
 ////////////////////ec2 
 resource "aws_security_group" "prodSG_iac_shoval" {
