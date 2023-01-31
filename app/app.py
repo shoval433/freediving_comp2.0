@@ -83,7 +83,7 @@ def drop_data(comp):
     
 @app.post('/<comp>/')
 def add_comp(comp):
-    comp=str(comp).lower
+    comp=str(comp).lower()
     _id = request.form.get('_id')
     firstName = request.form.get('firstName')
     lastName = request.form.get('lastName')
@@ -105,8 +105,8 @@ def add_comp(comp):
     ,"gender":gender
     }
     
-    comp_db=db.get_database(str(comp))
-
+    comp_db=db.get_database(comp)
+    
     for key, value in doc.items():
         if value is None or value == "":
             return (f"{key} is null")
