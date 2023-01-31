@@ -12,7 +12,7 @@ done
 
 sudo usermod -aG docker $USER
 sudo docker load -i $(pwd)/image.tar
-sudo apt install awscli
+sudo apt install awscli -y 
 check=1
 while [ ${check} == 1 ]
 do
