@@ -6,12 +6,17 @@ services:
           - "80:80"
       volumes:
        - ./templates:/usr/share/nginx/html/static
+      networks:
+      - for_app
       depends_on:
         - app_comp
     
   
   app_comp:
     image: 644435390668.dkr.ecr.eu-west-3.amazonaws.com/freedivingcompetitions:${VERSION_COMP}
+    networks:
+      - for_app 
+      - for_db
     depends_on:
       my_db:
         condition: service_healthy 
@@ -27,6 +32,8 @@ services:
       - "27017:27017" 
     volumes:
       - data:/data/db
+    networks:
+      - for_db
     healthcheck:
       test: ["CMD", "mongo", "--eval","db.runCommand({ping:1}).ok"]
       interval: 10s
@@ -38,7 +45,6 @@ volumes:
   data:
     driver: local
 
-# networks:
-#   default:
-#     name: ${NETWORK}
-#     external: true
+networks:
+  for_app:
+  for_db:
