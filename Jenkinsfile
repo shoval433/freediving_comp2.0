@@ -130,7 +130,7 @@ pipeline{
                         sh "terraform apply -var VAR=${Ver_Calc} -replace=module.compute.aws_instance.prod_shoval_iac -auto-approve"
                     }
                 }
-
+//
 
             }
            
@@ -165,7 +165,7 @@ pipeline{
                  dir("terraform"){
                         sh "terraform init"
                         sh "terraform workspace select prod"
-                        sh "terraform destroy"
+                        sh "terraform destroy -var VAR=${Ver_Calc} -auto-approve"
                     }
                 emailext   recipientProviders: [culprits()],
                 subject: 'YOU ARE BETTER THEN THAT !!! ', body: 'Dear programmer, you have broken the code, you are asked to immediately sit on the chair and leave the coffee corner.',  

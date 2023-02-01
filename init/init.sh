@@ -24,11 +24,6 @@ aws ecr get-login-password --region eu-west-3 | docker login --username AWS --pa
 tar -xvzf start_to_ec2.tar.gz
 tar -xvzf templates.tar.gz
 export VERSION_COMP=$1
-docker compose -f docker-compose-prod.yaml build --no-cache
-docker compose -f docker-compose-prod.yaml up -d
-# while [ ${check} == 1 ]
-# do
-# check=0
-# sudo docker-compose up -d  || { check=1 ; }
-# sleep 1
-# done
+sudo docker compose -f docker-compose-prod.yaml build --no-cache
+sudo docker compose -f docker-compose-prod.yaml up -d
+
