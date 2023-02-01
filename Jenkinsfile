@@ -127,7 +127,7 @@ pipeline{
                     dir("terraform"){
                         sh "terraform init"
                         sh "terraform workspace new prod || terraform workspace select prod"
-                        sh "terraform apply -var VAR=${Ver_Calc} -replace=module.compute.aws_instance.prod_shoval_iac -auto-approve"
+                        sh "terraform apply -var VAR=${Ver_Calc} -replace=module.compute.aws_instance.prod_shoval_iac[0] -replace=module.compute.aws_instance.prod_shoval_iac[1] -auto-approve"
                     }
                 }
 //
