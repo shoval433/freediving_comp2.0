@@ -33,24 +33,9 @@ resource "null_resource" "name" {
       "cd init && bash init.sh ${var.VAR}",
     ]
   }
-  # # script
-  # provisioner "file" {
-  #   source      = "deployment.sh"
-  #   destination = "/tmp/script.sh"
-  # }
-  # # deployment folder
-  # provisioner "file" {
-  #   source      = "./production"
-  #   destination = "/tmp"
-  # }
-  # provisioner "local-exec" {
-  #   command = "echo ${module.compute.ec2_public_ip} >> ip.txt"
-  # }
-  # # #activate the script
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "chmod +x /tmp/script.sh",
-  #     "sudo /tmp/script.sh",
-  #   ]
-  # }
+
+}
+output "lb_arn" {
+  description = "The ID and ARN of the load balancer we created"
+  value       = module.compute.lb_group_arn
 }
