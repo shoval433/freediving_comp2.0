@@ -135,6 +135,14 @@ pipeline{
                      ARN_TG=sh (script: "echo ${ARN_TG} | sed 's/\"//g'",
                     returnStdout: true).trim()
                     echo "${ARN_TG}"
+                    withCredentials([[
+                                $class: 'AmazonWebServicesCredentialsBinding',
+                                credentialsId: 'aws_shoval',
+                                accessKeyVaeiable: 'AWS_ACCESS_KET_ID',
+                                secretKeyVariable: 'AWS_SECRET_KEY_ID'
+                                ]]) {
+                                   sh "aws elbv2 modify-target-group-attributes --target-group-arn ${ARN_TG} --attributes Key=stickiness.enabled,Value=true Key=stickiness.lb_cookie.duration_seconds,Value=86400"
+                    }
                 }
                 
 
