@@ -127,13 +127,17 @@ pipeline{
                     sh "mv start_to_ec2.tar.gz init/"
                     dir("terraform"){
                         sh "terraform init"
-                        sh "terraform workspace new prod || terraform workspace select prod"
+                        sh "terraform workspace select prod|| terraform workspace new prod "
                         sh "terraform apply -var VAR=${Ver_Calc} -replace=module.compute.aws_instance.prod_shoval_iac[0] -replace=module.compute.aws_instance.prod_shoval_iac[1] -auto-approve"
                         ARN_TG=sh (script: "terraform output lb_arn",
                     returnStdout: true).trim()
                     }
+                     ARN_TG=sh (script: "echo ${ARN_TG} | sed 's/\"//g'",
+                    returnStdout: true).trim()
                     echo "${ARN_TG}"
                 }
+                
+
 //
 
             }
