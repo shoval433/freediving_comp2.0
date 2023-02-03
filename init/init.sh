@@ -24,12 +24,11 @@ done
 aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 644435390668.dkr.ecr.eu-west-3.amazonaws.com
 tar -xvzf start_to_ec2.tar.gz
 tar -xvzf templates.tar.gz
-
 while [ ${check} == 1 ]
 do
 check=0
-export VERSION_COMP=$1 && docker compose -f docker-compose-prod.yaml up --build -d || { check=1 ; }
+docker compose --version || { check=1 ; }
 sleep 1
 done
-
+export VERSION_COMP=$1 && docker compose -f docker-compose-prod.yaml up --build -d
 
