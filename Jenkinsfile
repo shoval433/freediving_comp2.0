@@ -93,7 +93,7 @@ pipeline{
                                 $class: 'AmazonWebServicesCredentialsBinding',
                                 credentialsId: 'aws_shoval',
                                 accessKeyVaeiable: 'AWS_ACCESS_KET_ID',
-                                secretKeyVariable: 'AWS_SECRET_KEY_ID'
+                                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                                 ]]) {
                                 sh "cd app && docker build -t app . --no-cache"
                                 sh "docker tag app freedivingcompetitions:${Ver_Calc}"
@@ -139,7 +139,7 @@ pipeline{
                                 $class: 'AmazonWebServicesCredentialsBinding',
                                 credentialsId: 'aws_shoval',
                                 accessKeyVaeiable: 'AWS_ACCESS_KET_ID',
-                                secretKeyVariable: 'AWS_SECRET_KEY_ID'
+                                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                                 ]]) {
                                    sh "aws elbv2 modify-target-group-attributes --target-group-arn ${ARN_TG} --attributes Key=stickiness.enabled,Value=true Key=stickiness.lb_cookie.duration_seconds,Value=86400"
                     }
