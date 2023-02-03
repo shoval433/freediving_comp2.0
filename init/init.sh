@@ -13,6 +13,7 @@ done
 sudo usermod -aG docker $USER
 sudo docker load -i $(pwd)/image.tar
 sudo apt install awscli -y 
+
 check=1
 while [ ${check} == 1 ]
 do
@@ -30,5 +31,5 @@ tar -xvzf templates.tar.gz
 # docker compose --version || { check=1 ; }
 # sleep 1
 # done
-export VERSION_COMP=$1 && docker compose -f docker-compose-prod.yaml up --build -d
+export VERSION_COMP=$1 && sudo docker compose -f docker-compose-prod.yaml up --build -d
 
