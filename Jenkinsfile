@@ -6,6 +6,7 @@ pipeline{
     }
     environment{   
         def Ver_Calc=""
+
     }
     stages{
         stage("CHEKOUT"){
@@ -128,7 +129,7 @@ pipeline{
                         sh "terraform init"
                         sh "terraform workspace new prod || terraform workspace select prod"
                         sh "terraform apply -var VAR=${Ver_Calc} -replace=module.compute.aws_instance.prod_shoval_iac[0] -replace=module.compute.aws_instance.prod_shoval_iac[1] -auto-approve"
-                        def ARN_TG=sh (script: "terraform output lb_arn",
+                        ARN_TG=sh (script: "terraform output lb_arn",
                     returnStdout: true).trim()
                     }
                     echo "${ARN_TG}"
