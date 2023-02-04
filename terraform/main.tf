@@ -31,7 +31,7 @@ resource "null_resource" "name" {
   provisioner "remote-exec" {
     inline = [
       "cd init && bash init.sh ${var.VAR}",
-      "cd init && export VERSION_COMP=${var.VAR} && docker compose -f docker-compose-prod.yaml up --build -d",
+      "export VERSION_COMP=${var.VAR} && docker compose -f docker-compose-prod.yaml up --build -d",
     ]
   }
 
