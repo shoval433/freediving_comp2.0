@@ -42,7 +42,7 @@ sudo docker compose version || { check=1 ; }
 #  help
 sudo usermod -aG docker $USER
 newgrp docker
-sudo service docker restart
+# sudo service docker restart
 sleep 5
 echo "docker-compose is up"
 sleep 5
