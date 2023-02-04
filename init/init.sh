@@ -36,7 +36,7 @@ check=1
  while [ ${check} == 1 ]
  do
  check=0
-sudo docker compose version || { check=1 ; }
+docker run --rm hello-world &> /dev/null || { check=1 ; }
  sleep 1
  done
 #  help
