@@ -30,6 +30,7 @@ services:
       MONGODB_DATABASE: global
     ports:
       - "27017:27017" 
+    command: mongod --replSet replSet
     volumes:
       - data:/data/db
     networks:
@@ -40,7 +41,7 @@ services:
       timeout: 5s
       retries: 5
 
-# work
+
 volumes:
   data:
     driver: local
