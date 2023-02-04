@@ -32,6 +32,7 @@ echo "tar is open"
 sleep 5
 echo "try docker-compose"
 sleep 5
+check=1
  while [ ${check} == 1 ]
  do
  check=0
@@ -43,3 +44,10 @@ sleep 5
 echo "start app"
 sleep 5
 export VERSION_COMP=$1 && docker compose -f docker-compose-prod.yaml up --build -d
+# check=1
+# while [ ${check} == 1 ]
+#  do
+#  check=0
+# export VERSION_COMP=$1 && docker compose -f docker-compose-prod.yaml up --build -d|| { check=1 ; }
+#  sleep 1
+#  done
