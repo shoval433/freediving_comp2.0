@@ -209,7 +209,7 @@ resource "aws_instance" "prod_shoval_iac" {
     curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
     sudo apt-get install docker-compose-plugin
-    sudo apt install awscli
+    sudo apt install awscli -y
     EOF
 
   //add the role
