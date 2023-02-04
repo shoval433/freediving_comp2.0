@@ -39,6 +39,7 @@ check=1
 sudo docker compose --version || { check=1 ; }
  sleep 1
  done
+#  help
 sudo usermod -aG docker $USER
 newgrp docker
 sudo service docker restart
