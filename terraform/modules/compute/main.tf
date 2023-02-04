@@ -214,7 +214,9 @@ resource "aws_instance" "prod_shoval_iac" {
 
   //add the role
   iam_instance_profile = "${aws_iam_instance_profile.ec2_profile.name}"
-
+   lifecycle {
+    create_before_destroy = true
+  }
 
      tags = merge(var.tags,{
       "Name" =format("%s-%s",var.ec2_name[count.index],"${terraform.workspace}")

@@ -10,9 +10,9 @@ sudo docker ps || { check=1 ; }
 sleep 1
 done
 
-sudo usermod -aG docker $USER
-sudo docker load -i $(pwd)/image.tar
-sudo apt install awscli -y 
+# sudo usermod -aG docker $USER
+# sudo docker load -i $(pwd)/image.tar
+# sudo apt install awscli -y 
 
 check=1
 while [ ${check} == 1 ]
