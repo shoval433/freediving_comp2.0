@@ -33,10 +33,12 @@ sleep 5
 echo "try docker-compose"
 sleep 5
 check=1
+sudo chmod 666 /var/run/docker.sock
  while [ ${check} == 1 ]
  do
+ echo "try"
  check=0
-docker run --rm hello-world &> /dev/null || { check=1 ; }
+ docker run --rm hello-world &> /dev/null || { check=1 ; }
  sleep 1
  done
 #  help
