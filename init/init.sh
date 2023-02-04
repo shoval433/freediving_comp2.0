@@ -40,15 +40,16 @@ sudo docker compose version || { check=1 ; }
  sleep 1
  done
 #  help
-sudo usermod -aG docker $USER
-newgrp docker
+# sudo usermod -aG docker $USER
+# newgrp docker
 # sudo service docker restart
 sleep 5
 echo "docker-compose is up"
 sleep 5
 echo "start app"
 sleep 5
-export VERSION_COMP=$1 && docker compose -f docker-compose-prod.yaml up --build -d
+aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 644435390668.dkr.ecr.eu-west-3.amazonaws.com
+# export VERSION_COMP=$1 && docker compose -f docker-compose-prod.yaml up --build -d
 # check=1
 # while [ ${check} == 1 ]
 #  do
