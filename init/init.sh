@@ -39,6 +39,10 @@ check=1
 sudo docker compose --version || { check=1 ; }
  sleep 1
  done
+sudo usermod -aG docker $USER
+newgrp docker
+sudo service docker restart
+sleep 5
 echo "docker-compose is up"
 sleep 5
 echo "start app"
