@@ -11,7 +11,7 @@ My name is Shoval and i am DevOps Engineer focuses on deploying, automating, and
 In my most recent project, I was developing and implementing CI/CD workflows in Jenkins for multiple applications, working with Jfrog's Artifactory to manage artifacts, and building Python applications in a microservices architecture for deployment on AWS. My experience with virtual machines and different databases and web frameworks makes me a well-rounded engineer who can handle a variety of tasks.
 
 ## Architecture
-![Logo]()
+![image](image.png)
 
 ## API Reference
 
